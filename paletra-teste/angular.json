@@ -1,0 +1,113 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "paletra-teste-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/paletra-teste-app",
+      "sourceRoot": "projects/paletra-teste-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/paletra-teste-app",
+            "index": "projects/paletra-teste-app/src/index.html",
+            "main": "projects/paletra-teste-app/src/main.ts",
+            "polyfills": "projects/paletra-teste-app/src/polyfills.ts",
+            "tsConfig": "projects/paletra-teste-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/paletra-teste-app/src/favicon.ico",
+              "projects/paletra-teste-app/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/paletra-teste-app/src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/paletra-teste-app/src/environments/environment.ts",
+                  "with": "projects/paletra-teste-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "paletra-teste-app:build:production"
+            },
+            "development": {
+              "browserTarget": "paletra-teste-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "paletra-teste-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/paletra-teste-app/src/test.ts",
+            "polyfills": "projects/paletra-teste-app/src/polyfills.ts",
+            "tsConfig": "projects/paletra-teste-app/tsconfig.spec.json",
+            "karmaConfig": "projects/paletra-teste-app/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/paletra-teste-app/src/favicon.ico",
+              "projects/paletra-teste-app/src/assets"
+            ],
+            "styles": [
+              "projects/paletra-teste-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "6a32b562-cbb0-4679-af8e-0361cf4896e1"
+  }
+}
